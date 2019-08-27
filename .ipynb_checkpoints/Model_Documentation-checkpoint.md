@@ -95,7 +95,7 @@ Long Spline Lane Change | Short Spline Lane Change
 ![][image3]|![][image4]
 
 ### Navigation Video Sample
-*Comming Soon!*
+*Coming Soon!*
 
 ## Forward Looking
 ---
