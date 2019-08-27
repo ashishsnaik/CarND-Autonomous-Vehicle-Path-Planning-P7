@@ -36,7 +36,7 @@ VehicleState ego_state = KL;
 // macros
 #define LEFT_LANE 0
 #define CENTER_LANE 1
-#define RIGTH_LANE 2
+#define RGITH_LANE 2
 
 const double kHighPositiveValue = 99999.0;
 const double kHighNegativeValue = -99999.0;
@@ -60,6 +60,7 @@ int spline_start_d = kMinSplineStart_d;
 vector<int> spline_points_spacing = {spline_start_d, spline_start_d*2, spline_start_d*3};
 // spline target distance
 double spline_target_x = spline_start_d;
+
 
 
 int main() {
@@ -325,21 +326,21 @@ int main() {
               // check whether we can change lane, and we change to a lane
               // only if the vehicles in front and rear in the target lane
               // are at safe distances from us
-              if (ego_lane == LEFT_LANE ) { // we are in left-most lane
+              if (ego_lane == 0 ) { // we are in left-most lane
 
                 if (closest_vehicles_lane1[0][1] <= kMinLaneChangeDistanceRear &&
                     closest_vehicles_lane1[1][1] >= kMinLaneChangeDistanceFront) {
                   // move to center-lane (lane 1)
                   ego_state = LCR;
                 }
-              } else if (ego_lane == CENTER_LANE) { // we are in right-most lane
+              } else if (ego_lane == 2) { // we are in right-most lane
                 if (closest_vehicles_lane1[0][1] <= kMinLaneChangeDistanceRear &&
                     closest_vehicles_lane1[1][1] >= kMinLaneChangeDistanceFront) {
                   // move to center lane (lane 1)
                   ego_state = LCL;
                 }
 
-              } else if (ego_lane == RIGHT_LANE) { // we are in the center lane
+              } else if (ego_lane == 1) { // we are in the center lane
                 // check whether both left and right lanes are available to change to
                 // if both lanes are available
                 //    move to the lane in which the vehicle we would be following is quite farther ahead than

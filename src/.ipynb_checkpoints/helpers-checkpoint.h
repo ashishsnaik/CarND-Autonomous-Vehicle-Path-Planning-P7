@@ -9,9 +9,9 @@
 using std::string;
 using std::vector;
 
-
+// safe distance to follow a vehicle
 const double kSafeFollowDistance = 20.0; // meters
-// minimum time buffer before we collide into a vehicle
+// minimum time required before we collide into a vehicle
 double min_time_to_impact = 1.0; // seconds
 
 // Checks if the SocketIO event has JSON data.
