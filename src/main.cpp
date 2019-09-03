@@ -36,7 +36,7 @@ VehicleState ego_state = KL;
 // macros
 #define LEFT_LANE 0
 #define CENTER_LANE 1
-#define RIGTH_LANE 2
+#define RIGHT_LANE 2
 
 const double kHighPositiveValue = 99999.0;
 const double kHighNegativeValue = -99999.0;
