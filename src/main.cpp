@@ -332,14 +332,14 @@ int main() {
                   // move to center-lane (lane 1)
                   ego_state = LCR;
                 }
-              } else if (ego_lane == CENTER_LANE) { // we are in right-most lane
+              } else if (ego_lane == RIGHT_LANE) { // we are in right-most lane
                 if (closest_vehicles_lane1[0][1] <= kMinLaneChangeDistanceRear &&
                     closest_vehicles_lane1[1][1] >= kMinLaneChangeDistanceFront) {
                   // move to center lane (lane 1)
                   ego_state = LCL;
                 }
 
-              } else if (ego_lane == RIGHT_LANE) { // we are in the center lane
+              } else if (ego_lane == CENTER_LANE) { // we are in the center lane
                 // check whether both left and right lanes are available to change to
                 // if both lanes are available
                 //    move to the lane in which the vehicle we would be following is quite farther ahead than
@@ -392,7 +392,7 @@ int main() {
                 ego_state = next_ego_state;
 
               } else { // THIS SHOULD NEVER HAPPEN!!
-                if (ego_lane < 0){
+                if (ego_lane < LEFT_LANE){
                   ego_state = LCR; // wrong side of the highway, get out of on-coming traffic asap :-)
                 } else {
                   ref_vel -= 1.0; // on the right shoulder, stop soon
@@ -411,7 +411,7 @@ int main() {
           case LCL: // Lane Change - Left
             // store the previous ego lane
             prev_ego_lane = ego_lane;
-            ego_lane = (ego_lane > 0) ? --ego_lane : ego_lane;
+            ego_lane = (ego_lane > LEFT_LANE) ? --ego_lane : ego_lane;
             std::cout << "Executing LC-Left" << std::endl;
             ego_state = KL;
             std::cout << "New Ego lane " << ego_lane << "  Prev Ego lane: " << prev_ego_lane  << std::endl << std::endl;
@@ -419,7 +419,7 @@ int main() {
           case LCR: // Lane Change - Right
             // store the previous ego lane
             prev_ego_lane = ego_lane;
-            ego_lane = (ego_lane < 2) ? ++ego_lane : ego_lane;
+            ego_lane = (ego_lane < RIGHT_LANE) ? ++ego_lane : ego_lane;
             std::cout << "Executing LC-Right" << std::endl;
             ego_state = KL;
             std::cout << "New lane " << ego_lane << "  Prev Ego lane: " << prev_ego_lane  << std::endl << std::endl;
